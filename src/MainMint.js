@@ -10,6 +10,13 @@ const MainMint = ({ accounts, setAccounts }) => {
     const isConnected = Boolean(accounts[0]);
     const mintValue = 0.001;
 
+
+    var privateKey = process.env.REACT_APP_PRIVATE_KEY;
+    var rpc = process.env.REACT_APP_RINKEBY_RPC_URL;
+    const provider = new ethers.providers.JsonRpcProvider(rpc);
+    var wallet = new ethers.Wallet(privateKey, provider);
+    const signer = wallet.provider.getSigner(wallet.address);
+
     async function handleMint() {
         if (window.ethereum) {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -19,6 +26,7 @@ const MainMint = ({ accounts, setAccounts }) => {
                 AcceptedNFT.abi,
                 signer
             );
+            console.log(wallet.address);
             try {
                 const response = await contract.mint(BigNumber.from(mintAmount), {
                     value: ethers.utils.parseEther((mintValue * mintAmount).toString()),
@@ -30,24 +38,21 @@ const MainMint = ({ accounts, setAccounts }) => {
         }
     }
 
-    var privateKey = process.env.REACT_APP_PRIVATE_KEY;
-    var rpc = process.env.REACT_APP_RINKEBY_RPC_URL;
-    const provider = new ethers.providers.JsonRpcProvider(rpc);
-    var wallet = new ethers.Wallet(privateKey, provider);
 
     async function airDropMint() {
         
-        const signer = wallet.provider.getSigner(wallet.address);
+        //const signer = wallet.provider.getSigner(wallet.address);
         const contract = new ethers.Contract(
             acceptedNFTAddress,
             AcceptedNFT.abi,
             signer
         );
             console.log(contract);
+            let contractWithSigner = contract.connect(wallet);
+            let air = await contractWithSigner.airDropTo("0xc271E49b99108fCC544A69BFf36B172505078C3D", 1);
             try {
                 //this is the part where the error occurs
-                const response = await contract.airDropMint(1, {});
-                console.log('response: ', response);
+                console.log(air);
             } catch (err) {
                 console.log("error: ", err);
             }
