@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Flex, Link, Input, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Text, Center } from '@chakra-ui/react';
 import { ethers, BigNumber } from 'ethers';
 import AcceptedNFT from './AcceptedNFT.json';
 
@@ -10,13 +10,6 @@ const MainMint = ({ accounts, setAccounts }) => {
     const isConnected = Boolean(accounts[0]);
     const mintValue = 0.001;
 
-
-    var privateKey = process.env.REACT_APP_PRIVATE_KEY;
-    var rpc = process.env.REACT_APP_RINKEBY_RPC_URL;
-    const provider = new ethers.providers.JsonRpcProvider(rpc);
-    var wallet = new ethers.Wallet(privateKey, provider);
-    const signer = wallet.provider.getSigner(wallet.address);
-
     async function handleMint() {
         if (window.ethereum) {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -26,7 +19,6 @@ const MainMint = ({ accounts, setAccounts }) => {
                 AcceptedNFT.abi,
                 signer
             );
-            console.log(wallet.address);
             try {
                 const response = await contract.mint(BigNumber.from(mintAmount), {
                     value: ethers.utils.parseEther((mintValue * mintAmount).toString()),
@@ -37,105 +29,69 @@ const MainMint = ({ accounts, setAccounts }) => {
             }
         }
     }
-
-
-    async function airDropMint() {
-        
-        //const signer = wallet.provider.getSigner(wallet.address);
-        const contract = new ethers.Contract(
-            acceptedNFTAddress,
-            AcceptedNFT.abi,
-            signer
-        );
-            console.log(contract);
-            let contractWithSigner = contract.connect(wallet);
-            let air = await contractWithSigner.airDropTo("0xc271E49b99108fCC544A69BFf36B172505078C3D", 1);
-            try {
-                //this is the part where the error occurs
-                console.log(air);
-            } catch (err) {
-                console.log("error: ", err);
-            }
-    }
-
+    
     return (
-        <Flex justify="center" align="center" height="100vh" paddingBottom="150px">
-            <Box width="1000px">
-                <div>
-                    <Text fontSize="40px" textShadow="0 5px #000000">Accepted DAO</Text>
-                    <Text 
-                        fontSize="35px"
+        <Center>
+            <Flex justify="center" align="center" width="1000px" height="90vh" flexDirection="column">
+                <Box bg='rgba(0,0,0,0.2)' borderRadius="30px" w='100%' paddingBottom="30px" >
+                    <Text fontSize="50px" fontFamily="Ubuntu" textShadow="0 3px #000000">Accepted DAO</Text>
+                    <Text
+                        fontSize="40px"
                         letterSpacing="-5.5%"
-                        fontFamily="VT323"
+                        fontFamily="Ubuntu"
                         textShadow="0 2px 2px #000000"
                     >
                         Welcome to Accepted DAO.</Text>
-                    <Text 
+                    <Text
                         fontSize="30px"
                         letterSpacing="-5.5%"
-                        fontFamily="VT323"
+                        fontFamily="Ubuntu"
                         textShadow="0 2px 2px #000000"
                     >
                         Accepted DAO is a decentralized college counseling organization.
                     </Text>
-                    <Text 
+                </Box>
+
+                <Box bg='rgba(0,0,0,0.2)' borderRadius="30px" w='100%' paddingBottom="30px" marginTop="70px">
+
+                    <Text
                         fontSize="30px"
                         letterSpacing="-5.5%"
-                        fontFamily="VT323"
+                        fontFamily="Ubuntu"
                         textShadow="0 2px 2px #000000"
                     >
                         ** Mint your membership NFT for only 0.001ETH **
                     </Text>
-                </div>
 
-                {isConnected ? (
-                    <div>
-                        <Flex align="center" justify="center">
-                        <Button 
-                            backgroundColor="#D6517D"
-                            borderRadius="5px" 
-                            boxShadow="0px 2px 2px 1px #0F0F0F" 
-                            color="white" 
-                            cursor="pointer"
-                            fontFamily="inherit"
-                            padding="15px"
-                            margin="0 15px"
-                            onClick={handleMint}
-                        >
-                            Join Now!
-                        </Button>
-                        </Flex>
-                    </div>
-                ) : (
-                    <p>You must be connected to your Metamask wallet to mint your membership NFT.</p>
-                )}
-                 <div>
-                    <Text 
-                        fontSize="30px"
-                        letterSpacing="-5.5%"
-                        fontFamily="VT323"
-                        textShadow="0 2px 2px #000000"
-                    >
-                        ** enter your wallet address to get an airdrop **
-                    </Text>
-                    <input id="wa"></input>
-                    <Button 
-                            backgroundColor="#D6517D"
-                            borderRadius="5px" 
-                            boxShadow="0px 2px 2px 1px #0F0F0F" 
-                            color="white" 
-                            cursor="pointer"
-                            fontFamily="inherit"
-                            padding="15px"
-                            margin="0 15px"
-                            onClick={airDropMint}
-                        >
-                            airdrop
-                        </Button>
-                </div>
-                
-            </Box>
-        </Flex>
+
+                    {isConnected ? (
+                        <div>
+                            <Flex align="center" justify="center">
+                                <Button
+                                    backgroundColor="#D6517D"
+                                    borderRadius="5px"
+                                    boxShadow="0px 2px 2px 1px #0F0F0F"
+                                    color="white"
+                                    cursor="pointer"
+                                    fontFamily="inherit"
+                                    fontSize="20px"
+                                    padding="12px"
+                                    margin="0 15px"
+                                    onClick={handleMint}
+                                >
+                                    Join Now!
+                                </Button>
+                            </Flex>
+                        </div>
+                    ) : (
+                        <>
+                        <p>You must be connected to your Metamask wallet to mint your membership NFT.</p>
+                        <p> Press connect button at the top-right corner to connect your metamask wallet.</p>
+                        </>
+                    )}
+                </Box>
+            </Flex>
+        </Center>
     );
 
 };

@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
 @import url("https://fonts.googleapis.com/css?family=VT323");
+@import url('https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&family=Ubuntu&display=swap');
 
 .App {
   text-align: center;
-  font-family: "Press Start 2P", "VT323";
+  font-family: 'Ubuntu', 'Ibarra Real Nova';
+  font-size: 24px;
   color: white;
 }
 
@@ -12,29 +15,5 @@
 }
 
 body {
-  overflow: hidden;
-}
-
-.overlay{
-  opacity: 0.9;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  position: fixed;
-}
-
-.moving-background {
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("./assets/background/harvardyard.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 50% 50%;
+  overflow: scroll;
 }

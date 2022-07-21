@@ -1,18 +1,20 @@
 import { useState, usestate } from 'react';
 import './App.css';
-import MainMint from './MainMint';
-import NavBar from './NavBar';
+import Chat from './Chat';
+import MainPage from './MainPage';
+
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   const [accounts, setAccounts] = useState([]);
+  const [member, signIn] = useState(false);
+  //const [color, changeColor] = useState('white');
   return (
-    <div className="overlay">
-      <div className="App">
-        <NavBar accounts={accounts} setAccounts={setAccounts}/>
-        <MainMint accounts={accounts} setAccounts={setAccounts}/>
-      </div>
-      <div className="moving-background"></div>
-    </div>
+
+    <Routes>
+      <Route path='/chat' element={<Chat />} />
+      <Route path='/' element={<MainPage accounts={accounts} setAccounts={setAccounts} member={member} signIn={signIn} />} />
+    </Routes>
   );
 }
 
