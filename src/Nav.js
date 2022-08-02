@@ -96,11 +96,19 @@ const Nav = ({ accounts, setAccounts, member, signIn, profileImg, setImg }) => {
                         <Link to="/" style={{ textDecoration: 'none', color: 'white', fontSize: '25px' }} >About</Link>
                     </Box>
                     <Spacer />
+                    {/* member only feature */}
+                    {member ? (
+                    <>
                     <Box margin="0 15px">
                         <Link to="./pages/Chat" style={{ textDecoration: 'none', color: 'white', fontSize: '25px' }}>Chat</Link>
                     </Box>
                     <Spacer />
-
+                    <Box margin="0 15px">
+                        <Link to="./pages/Request" style={{ textDecoration: 'none', color: 'white', fontSize: '25px' }}>Request</Link>
+                    </Box>
+                    <Spacer />
+                    </>
+                    ) : <></>}
 
                     {/* connect */}
                     {isConnected ? (<>
