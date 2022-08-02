@@ -7,6 +7,8 @@ import Nav from './Nav';
 import Main from './pages/Main';
 import Chat from './pages/Chat';
 import Profile from './pages/Profile';
+import Request from './pages/Request';
+import CreateRequest from './pages/CreateRequest';
 
 
 function App() {
@@ -19,7 +21,25 @@ function App() {
     <div className='App'>
       <Nav accounts={accounts} setAccounts={setAccounts} member={member} signIn={signIn}
         profileImg={profileImg} setImg={setImg} />
+
       <Routes>
+
+      <Route path='/pages/CreateRequest'
+          element={
+            <CreateRequest
+              accounts={accounts} setAccounts={setAccounts}
+              member={member} signIn={signIn}
+              profileImg={profileImg} setImg={setImg}
+            />}
+        />
+        <Route path='/pages/Request'
+          element={
+            <Request
+              accounts={accounts} setAccounts={setAccounts}
+              member={member} signIn={signIn}
+              profileImg={profileImg} setImg={setImg}
+            />}
+        />
         <Route path='/pages/Profile'
           element={
             <Profile
