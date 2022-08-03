@@ -16,20 +16,24 @@ function App() {
   const [accounts, setAccounts] = useState([]);
   const [member, signIn] = useState(false);
   const [profileImg, setImg] = useState('');
+  const [nickname, setNickname] = useState('');
+
 
   return (
     <div className='App'>
-      <Nav accounts={accounts} setAccounts={setAccounts} member={member} signIn={signIn}
+      <Nav accounts={accounts} setAccounts={setAccounts}
+        nickname={nickname} setNickname={setNickname}
+        member={member} signIn={signIn}
         profileImg={profileImg} setImg={setImg} />
 
       <Routes>
-
-      <Route path='/pages/CreateRequest'
+        <Route path='/pages/CreateRequest'
           element={
             <CreateRequest
               accounts={accounts} setAccounts={setAccounts}
               member={member} signIn={signIn}
               profileImg={profileImg} setImg={setImg}
+              nickname={nickname}
             />}
         />
         <Route path='/pages/Request'
@@ -38,6 +42,7 @@ function App() {
               accounts={accounts} setAccounts={setAccounts}
               member={member} signIn={signIn}
               profileImg={profileImg} setImg={setImg}
+              nickname={nickname}
             />}
         />
         <Route path='/pages/Profile'
@@ -54,6 +59,7 @@ function App() {
               accounts={accounts} setAccounts={setAccounts}
               member={member} signIn={signIn}
               profileImg={profileImg} setImg={setImg}
+              nickname={nickname}
             />}
         />
         <Route path='/'
@@ -61,6 +67,7 @@ function App() {
             <Main
               accounts={accounts} setAccounts={setAccounts}
               member={member} signIn={signIn}
+              nickname={nickname}
             />}
         />
 

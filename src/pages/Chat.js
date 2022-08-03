@@ -19,7 +19,7 @@ firebase.initializeApp(FirebaseConfig);
 const firestore = firebase.firestore();
 
 
-const Chat = ({ accounts, setAccounts, member, signIn, profileImg, setImg }) => {
+const Chat = ({ accounts, setAccounts, member, signIn, profileImg, setImg, nickname }) => {
 
     async function loginNFT() {
         if (window.ethereum) {
@@ -70,14 +70,14 @@ const Chat = ({ accounts, setAccounts, member, signIn, profileImg, setImg }) => 
         <div className="chatPage">
 
             <section className="chatSection">
-                {member ? <ChatRoom accounts={accounts} profileImg={profileImg} /> : (<button className="sign-in" onClick={loginNFT}>Sign in</button>)}
+                {member ? <ChatRoom accounts={accounts} profileImg={profileImg} nickname={nickname} /> : (<button className="sign-in" onClick={loginNFT}>Sign in</button>)}
             </section>
 
         </div>
     );
 }
 
-function ChatRoom({ accounts, profileImg }) {
+function ChatRoom({ accounts, profileImg, nickname }) {
 
     const [room, setRoom] = useState("messages");
     const [showChat, setShowChat] = useState(false);
@@ -88,22 +88,11 @@ function ChatRoom({ accounts, profileImg }) {
     const [messages] = useCollectionData(query, { idField: 'id' });
     const [formValue, setFormValue] = useState('');
 
-    const [author, setAuthor] = useState(accounts[0]);
-    const docRef = doc(firestore, "user", accounts[0]);
 
     const joinRoom = async (school) => {
         if (room !== "") {
             setRoom(school);
             setShowChat(true);
-        }
-
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
-            setAuthor(docSnap.get("nickname"));
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
         }
     }
 
@@ -114,7 +103,7 @@ function ChatRoom({ accounts, profileImg }) {
             text: formValue,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             uid: accounts[0],
-            author: author,
+            author: nickname,
             photoURL: profileImg,
             time:
                 new Date(Date.now()).getHours() +

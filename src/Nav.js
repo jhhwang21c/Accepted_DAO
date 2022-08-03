@@ -2,6 +2,9 @@ import React from "react";
 import { Box, Button, Flex, Image, Spacer } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+
 import './Nav.css'
 import Discord from "./assets/social-media-icons/discord.png";
 import Email from "./assets/social-media-icons/email_32x32.png";
@@ -9,10 +12,16 @@ import Twitter from "./assets/social-media-icons/twitter_32x32.png";
 
 import { ethers } from 'ethers';
 import AcceptedNFT from './AcceptedNFT.json';
+import { FirebaseConfig } from "./firebase_config";
+import { doc, getDoc } from "firebase/firestore";
 
 const acceptedNFTAddress = process.env.REACT_APP_CONTRACT;
 
-const Nav = ({ accounts, setAccounts, member, signIn, profileImg, setImg }) => {
+firebase.initializeApp(FirebaseConfig);
+
+const firestore = firebase.firestore();
+
+const Nav = ({ accounts, setAccounts, member, signIn, profileImg, setImg, nickname, setNickname }) => {
     const isConnected = Boolean(accounts[0]);
 
     async function connectAccount() {
@@ -32,6 +41,7 @@ const Nav = ({ accounts, setAccounts, member, signIn, profileImg, setImg }) => {
             );
 
             const balance = await contract.balanceOf(accounts[0]);
+            const docRef = doc(firestore, "user", accounts[0]);
 
             try {
                 if (balance.toString() !== "0") {
@@ -51,10 +61,15 @@ const Nav = ({ accounts, setAccounts, member, signIn, profileImg, setImg }) => {
 
                     setImg(tokenImgURI);
                     //NFT profile pic
+
                     alert("signed in with NFT");
+                    
+                    const docSnap = await getDoc(docRef);
+                    setNickname(docSnap.exists() ? docSnap.get("nickname") : accounts[0]);
                 } else {
                     signIn(false);
                     alert("you are not a member yet!");
+                    setNickname(accounts[0]);
                 }
             } catch (error) {
                 console.log(error);
@@ -82,8 +97,8 @@ const Nav = ({ accounts, setAccounts, member, signIn, profileImg, setImg }) => {
                     </a>
                 </Flex>
 
-                {/* right side - social media icons */}
-                <Flex justify="space-around" align="center" width="50%" padding="30px">
+                {/* right side - website menu */}
+                <Flex justify="space-around" align="center" width="55%" padding="30px">
                     <Box margin="0 15px">
                         <Link to="/" style={{ textDecoration: 'none', color: 'white', fontSize: '25px' }} >Home</Link>
                     </Box>
