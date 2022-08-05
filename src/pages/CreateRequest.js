@@ -21,6 +21,7 @@ const CreateRequest = ({ accounts, setAccounts, member, signIn, profileImg, setI
     const [title, setTitle] = useState('');
     const [type, setType] = useState('');
     const [contents, setContents] = useState('');
+    const [ETH, setETH] = useState('');
 
     let navigate = useNavigate();
 
@@ -33,6 +34,7 @@ const CreateRequest = ({ accounts, setAccounts, member, signIn, profileImg, setI
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             title: title,
             type: type,
+            eth: ETH,
             contents: contents
         })
 
@@ -47,14 +49,17 @@ const CreateRequest = ({ accounts, setAccounts, member, signIn, profileImg, setI
             <Text color='tomato' fontSize="30px">Make Request</Text>
 
             <Input variant='outline' placeholder="Title" width='70%' fontSize="20px" value={title} onChange={(e) => setTitle(e.target.value)} />
-
-            <Select placeholder='Select Subject' onChange={(e) => setType(e.target.value)} value={type} >
+            
+            <Flex marginTop="10px">
+            <Select placeholder='Select Subject' onChange={(e) => setType(e.target.value)} value={type} height="30px">
                 <option value='College Counseling'>College Counseling</option>
                 <option value='SAT Math'>SAT Math</option>
                 <option value='SAT Math'>SAT Reading</option>
                 <option value='Computer Science'>Computer Science</option>
                 <option value='English'>English</option>
             </Select>
+            <Input placeholder="ETH amount" width='150px' fontSize="12px" value={ETH} onChange={(e) => setETH(e.target.value)}/>
+            </Flex>
             <Spacer />
 
             <Textarea placeholder="Contents" height="30vh" width='70%' value={contents} onChange={(e) => setContents(e.target.value)} />

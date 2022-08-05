@@ -37,6 +37,7 @@ const Request = ({ accounts, setAccounts, member, signIn, profileImg, setImg, ni
                 <Flex>
                     <Text width="600px">Title</Text>
                     <Text width="160px">Subject</Text>
+                    <Text width="100px">ETH</Text>
                     <Text width="130px">Requestor</Text>
                 </Flex>
 
@@ -50,7 +51,7 @@ const Request = ({ accounts, setAccounts, member, signIn, profileImg, setImg, ni
 
 function RequestList(props) {
 
-    const { title, type, author, contents } = props.content;
+    const { title, type, author, contents, eth } = props.content;
     const accounts = props.accounts;
     let navigate = useNavigate();
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -61,27 +62,27 @@ function RequestList(props) {
             <Flex>
                 <Text width="600px" onClick={onOpen}>{title}</Text>
                 <Text width="160px">{type}</Text>
+                <Text width="100px">{eth}</Text>
                 <Text width="130px">{author}</Text>
             </Flex>
 
             <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalContent width="400px" height="400px" backgroundColor="rgba(0,0,0,0.2)"
-                    position='fixed' top="50%" left="40%">
-                    <Flex flexDirection="column" justify="space-between" align="center">
-                        <ModalHeader>Request Details</ModalHeader>
-                        <ModalBody>
-                            <Stack>
-                                <Box>{title}</Box>
-                                <Box>{author}</Box>
-                                <Box>{contents}</Box>
-                            </Stack>
+                <ModalContent width="400px" height="400px" backgroundColor="white" borderRadius="20px"
+                    position='fixed' top="30%" left="40%">
+                    <Flex flexDirection="column" align="center">
+                        <ModalHeader marginTop="40px">Request Details</ModalHeader>
+                        <ModalBody marginTop="40px">
+                                <Text>Title: {title}</Text>
+                                <Text>ETH: {eth}</Text>
+                                <Text>Requestor: {author}</Text>
+                                <Box width="350px">{contents}</Box>
                         </ModalBody>
 
-                        <ModalFooter>
-                            <Button colorScheme='blue' mr={3} onClick={onClose}>
+                        <ModalFooter marginTop="40px">
+                            <Button  mr={10} onClick={onClose}>
                                 Close
                             </Button>
-                            <Button variant='ghost'>Secondary Action</Button>
+                            <Button variant='ghost'>Accept</Button>
                         </ModalFooter>
                     </Flex>
                 </ModalContent>

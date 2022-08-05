@@ -28,6 +28,7 @@ const Main = ({ accounts, setAccounts }) => {
                 const response = await contract.mint(BigNumber.from(mintAmount), {
                     value: ethers.utils.parseEther((mintValue * mintAmount).toString()),
                 });
+                //window.location.reload();
                 console.log('response: ', response);
             } catch (err) {
                 console.log("error: ", err);
