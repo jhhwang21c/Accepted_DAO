@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text, Center, Spacer, Input } from '@chakra-ui/react';
+import { Box, Button, Flex, Text, Center, Spacer, Input, Image } from '@chakra-ui/react';
 import { ethers, BigNumber } from 'ethers';
 
 import './Main.css';
@@ -38,122 +38,122 @@ const Main = ({ accounts, setAccounts }) => {
 
     return (
         <div className="overlay">
-        <Center>
-            <Flex justify="center" align="center" width="100%" flexDirection="column">
-                <Box bg='rgba(0,0,0,0.2)' borderRadius="30px" w='70%' marginTop="170px" paddingBottom="30px" >
-                    <Text fontSize="50px" fontFamily="Ubuntu" textShadow="0 3px #000000">Accepted DAO</Text>
-                    <Text
-                        fontSize="40px"
-                        letterSpacing="-5.5%"
-                        fontFamily="Ubuntu"
-                        textShadow="0 2px 2px #000000"
-                    >
-                        Welcome to Accepted DAO.</Text>
-                    <Text
-                        fontSize="30px"
-                        letterSpacing="-5.5%"
-                        fontFamily="Ubuntu"
-                        textShadow="0 2px 2px #000000"
-                    >
-                        Accepted DAO is a decentralized college counseling organization.
-                    </Text>
-                </Box>
-
-                <Flex flexDirection="row" width="75%" >
-                    <Box bg='rgba(0,0,0,0.2)' borderRadius="30px" w='47%' marginBottom="30px" marginTop="70px">
+            <Center>
+                <Flex justify="center" align="center" width="100%" flexDirection="column">
+                    <Box bg='rgba(0,0,0,0.2)' borderRadius="30px" w='70%' marginTop="170px" paddingBottom="30px" >
+                        <Text fontSize="50px" fontFamily="Ubuntu" textShadow="0 3px #000000">Accepted DAO</Text>
+                        <Text
+                            fontSize="40px"
+                            letterSpacing="-5.5%"
+                            fontFamily="Ubuntu"
+                            textShadow="0 2px 2px #000000"
+                        >
+                            Welcome to Accepted DAO.</Text>
                         <Text
                             fontSize="30px"
                             letterSpacing="-5.5%"
                             fontFamily="Ubuntu"
                             textShadow="0 2px 2px #000000"
                         >
-                            Are you a prospective college student?
+                            Accepted DAO is a decentralized college counseling organization.
                         </Text>
-                        <Flex justify="center" align="center" flexDirection="row">
-                            <img src={batman} width='150px' alt="sample nft" />
-                            <Box w="220px" marginLeft='20px'>
-                                <Text
-                                    fontSize="21px"
-                                    fontFamily="Ubuntu"
-                                    textAlign="start"
-                                >
-                                    mint your membership nft for only 0.001ETH
-                                </Text>
-                            </Box>
-                        </Flex>
-
-                        {isConnected ? (
-                            <div>
-                                <Flex align="center" justify="center">
-                                    <Button
-                                        backgroundColor="#D6517D"
-                                        borderRadius="5px"
-                                        boxShadow="0px 2px 2px 1px #0F0F0F"
-                                        color="white"
-                                        cursor="pointer"
-                                        fontFamily="inherit"
-                                        fontSize="20px"
-                                        padding="12px"
-                                        marginTop="15px"
-                                        marginBottom="15px"
-                                        position="relative"
-                                        bottom="10px"
-                                        onClick={handleMint}
-                                    >
-                                        Join Now!
-                                    </Button>
-                                </Flex>
-                            </div>
-                        ) : (
-                            <>
-                                <Text
-                                    fontSize="20px"
-                                    fontFamily="Ubuntu"
-                                    paddingLeft="50px"
-                                    paddingRight="50px"
-                                    marginBottom="-10px"
-                                >You must be connected to your Metamask wallet to mint your membership NFT.</Text>
-                                <Text
-                                    fontSize="20px"
-                                    fontFamily="Ubuntu"
-                                    paddingLeft="50px"
-                                    paddingRight="50px"
-                                > Press connect button at the top-right corner to connect your metamask wallet.</Text>
-                            </>
-                        )}
-
-
                     </Box>
-                    <Spacer />
 
-                    <Box bg='rgba(0,0,0,0.2)' borderRadius="30px" w='47%' marginBottom="30px" marginTop="70px">
+                    <Flex flexDirection="row" width="75%" >
+                        <Box bg='rgba(0,0,0,0.2)' borderRadius="30px" w='47%' marginBottom="30px" marginTop="70px">
+                            <Text
+                                fontSize="30px"
+                                letterSpacing="-5.5%"
+                                fontFamily="Ubuntu"
+                                textShadow="0 2px 2px #000000"
+                            >
+                                Are you a prospective college student?
+                            </Text>
+                            <Flex justify="center" align="center" flexDirection="row">
+                                <img src={batman} width='150px' alt="sample nft" />
+                                <Box w="220px" marginLeft='20px'>
+                                    <Text
+                                        fontSize="21px"
+                                        fontFamily="Ubuntu"
+                                        textAlign="start"
+                                    >
+                                        mint your membership nft for only 0.001ETH
+                                    </Text>
+                                </Box>
+                            </Flex>
 
-                        <Text
-                            fontSize="30px"
-                            letterSpacing="-5.5%"
-                            fontFamily="Ubuntu"
-                            textShadow="0 2px 2px #000000"
-                        >
-                            Are you a college student?
-                        </Text>
-                        <Flex justify="center" align="center" flexDirection="row">
-                            <img src={samplenft} width='150px' alt="sample nft" />
-                            <Box w="220px" marginLeft='20px'>
-                                <Text
-                                    fontSize="21px"
-                                    fontFamily="Ubuntu"
-                                    textAlign="start"
-                                >
-                                    mint your membership nft for only 0.001ETH
-                                </Text>
-                            </Box>
-                        </Flex>
+                            {isConnected ? (
+                                <div>
+                                    <Flex align="center" justify="center">
+                                        <Button
+                                            backgroundColor="#D6517D"
+                                            borderRadius="5px"
+                                            boxShadow="0px 2px 2px 1px #0F0F0F"
+                                            color="white"
+                                            cursor="pointer"
+                                            fontFamily="inherit"
+                                            fontSize="20px"
+                                            padding="12px"
+                                            marginTop="15px"
+                                            marginBottom="15px"
+                                            position="relative"
+                                            bottom="10px"
+                                            onClick={handleMint}
+                                        >
+                                            Join Now!
+                                        </Button>
+                                    </Flex>
+                                </div>
+                            ) : (
+                                <>
+                                    <Text
+                                        fontSize="20px"
+                                        fontFamily="Ubuntu"
+                                        paddingLeft="50px"
+                                        paddingRight="50px"
+                                        marginBottom="-10px"
+                                    >You must be connected to your Metamask wallet to mint your membership NFT.</Text>
+                                    <Text
+                                        fontSize="20px"
+                                        fontFamily="Ubuntu"
+                                        paddingLeft="50px"
+                                        paddingRight="50px"
+                                    > Press connect button at the top-right corner to connect your metamask wallet.</Text>
+                                </>
+                            )}
 
 
-                        {isConnected ? (
-                            <div>
-                                <Flex align="center" justify="center" flexDirection="row">
-                                <Input id="email" placeholder='School Email Required' size='md' variant='flushed' />
+                        </Box>
+                        <Spacer />
+
+                        <Box bg='rgba(0,0,0,0.2)' borderRadius="30px" w='47%' marginBottom="30px" marginTop="70px">
+
+                            <Text
+                                fontSize="30px"
+                                letterSpacing="-5.5%"
+                                fontFamily="Ubuntu"
+                                textShadow="0 2px 2px #000000"
+                            >
+                                Are you a college student?
+                            </Text>
+                            <Flex justify="center" align="center" flexDirection="row">
+                                <img src={samplenft} width='150px' alt="sample nft" />
+                                <Box w="220px" marginLeft='20px'>
+                                    <Text
+                                        fontSize="21px"
+                                        fontFamily="Ubuntu"
+                                        textAlign="start"
+                                    >
+                                        mint your membership nft for only 0.001ETH
+                                    </Text>
+                                </Box>
+                            </Flex>
+
+
+                            {isConnected ? (
+
+                                <Flex align="center" justify="center" flexDirection="row" width="95%">
+                                    <Input id="email" placeholder='School Email Required' size="sm" backgroundColor='white' width="50%"/>
                                     <Button
                                         backgroundColor="#D6517D"
                                         borderRadius="5px"
@@ -163,8 +163,7 @@ const Main = ({ accounts, setAccounts }) => {
                                         fontFamily="inherit"
                                         fontSize="20px"
                                         padding="12px"
-                                        marginTop="15px"
-                                        marginBottom="15px"
+                                        marginTop="20px"
                                         marginLeft="15px"
                                         position="relative"
                                         bottom="10px"
@@ -173,38 +172,39 @@ const Main = ({ accounts, setAccounts }) => {
                                         Join Now!
                                     </Button>
                                 </Flex>
-                            </div>
-                        ) : (
-                            <>
-                                <Text
-                                    fontSize="20px"
-                                    fontFamily="Ubuntu"
-                                    paddingLeft="50px"
-                                    paddingRight="50px"
-                                    marginBottom="-10px"
-                                >You must be connected to your Metamask wallet to mint your membership NFT.</Text>
-                                <Text
-                                    fontSize="20px"
-                                    fontFamily="Ubuntu"
-                                    paddingLeft="50px"
-                                    paddingRight="50px"
-                                > Press connect button at the top-right corner to connect your metamask wallet.</Text>
-                            </>
-                        )}
-                    </Box>
+
+                            ) : (
+                                <>
+                                    <Text
+                                        fontSize="20px"
+                                        fontFamily="Ubuntu"
+                                        paddingLeft="50px"
+                                        paddingRight="50px"
+                                        marginBottom="-10px"
+                                    >You must be connected to your Metamask wallet to mint your membership NFT.</Text>
+                                    <Text
+                                        fontSize="20px"
+                                        fontFamily="Ubuntu"
+                                        paddingLeft="50px"
+                                        paddingRight="50px"
+                                    > Press connect button at the top-right corner to connect your metamask wallet.</Text>
+                                </>
+                            )}
+                        </Box>
+                    </Flex>
+                    <div>
+                        <Text
+                            fontSize="40px"
+                            fontFamily="Ubuntu"
+                            textShadow="0 2px 2px #000000"
+                            marginBottom="-50px"
+                            marginTop="50px"
+                        >
+                            Our Timeline</Text>
+                        <Image src={timeline} alt='timeline' />
+                    </div>
                 </Flex>
-                <div>
-                    <Text
-                        fontSize="40px"
-                        fontFamily="Ubuntu"
-                        textShadow="0 2px 2px #000000"
-                        marginBottom="-25px"
-                    >
-                        Our Timeline</Text>
-                    <img src={timeline} alt='timeline' width="80%" />
-                </div>
-            </Flex>
-        </Center>
+            </Center>
         </div>
     );
 

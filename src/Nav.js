@@ -130,7 +130,7 @@ const Nav = ({ accounts, setAccounts, member, signIn, profileImg, setImg, nickna
                         <Box backgroundColor="green"
                             fontFamily="inherit" borderRadius="5px"
                             width="150px" fontSize="20px" color="white"
-                            padding="14px" margin="0 15px"
+                            padding="12px" margin="0 15px"
                             boxShadow="0px 2px 2px 1px #0F0F0F" textAlign="center">
                             Connected
                         </Box> {member ? (<Link to="./pages/Profile"><img className="chatImg" src={profileImg} alt="nft" /></Link>) : <></>}</>
@@ -140,7 +140,7 @@ const Nav = ({ accounts, setAccounts, member, signIn, profileImg, setImg, nickna
                             boxShadow="0px 2px 2px 1px #0F0F0F"
                             color="white" cursor="pointer"
                             fontFamily="inherit" fontSize="20px"
-                            width="150px" padding="12px"
+                            width="150px" padding="12px" height="50px"
                             margin="0 15px"
                             onClick={() => { connectAccount(); }}>
                             Connect

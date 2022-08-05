@@ -127,7 +127,7 @@ function ChatRoom({ accounts, profileImg, nickname }) {
                 </Flex>
             ) : (
                 <div>
-                    <Button position="fixed" top="120px" left="200px" onClick={()=> setShowChat(false)}>Back</Button>
+                    <Button position="fixed" top="130px" left="200px" onClick={()=> setShowChat(false)} backgroundColor="grey">Back</Button>
                     <main className='chatMain'>
                         {messages && messages.map((msg, index) => <ChatMessage key={index} message={msg} accounts={accounts} profileImg={profileImg} />)}
                         <span ref={dummy}></span>

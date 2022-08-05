@@ -44,27 +44,27 @@ const CreateRequest = ({ accounts, setAccounts, member, signIn, profileImg, setI
     };
 
     return (
-        <Flex flexDirection="column" align="center" marginTop="130px" width="60%" height="60%"
-            position="fixed" left="50%" transform="translate(-50%,0)" backgroundColor="#E1F6FF" borderRadius="40px">
-            <Text color='tomato' fontSize="30px">Make Request</Text>
+        <Flex flexDirection="column" align="center" marginTop="160px" width="60%" height="60%"
+            position="fixed" left="50%" transform="translate(-50%,0)" backgroundColor="#E1F6FF" borderRadius="40px" color="black">
+            <Text color='tomato' fontSize="30px" marginTop="15px" marginBottom="15px">Make Request</Text>
 
-            <Input variant='outline' placeholder="Title" width='70%' fontSize="20px" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <Input variant='outline' placeholder="Title" width='70%' fontSize="20px" value={title} onChange={(e) => setTitle(e.target.value)} backgroundColor='white'/>
             
             <Flex marginTop="10px">
-            <Select placeholder='Select Subject' onChange={(e) => setType(e.target.value)} value={type} height="30px">
+            <Select placeholder='Select Subject' onChange={(e) => setType(e.target.value)} value={type} height="30px" color="black" backgroundColor='white' marginRight="20px">
                 <option value='College Counseling'>College Counseling</option>
                 <option value='SAT Math'>SAT Math</option>
                 <option value='SAT Math'>SAT Reading</option>
                 <option value='Computer Science'>Computer Science</option>
                 <option value='English'>English</option>
             </Select>
-            <Input placeholder="ETH amount" width='150px' fontSize="12px" value={ETH} onChange={(e) => setETH(e.target.value)}/>
+            <Input placeholder="ETH amount" width='150px' fontSize="12px" value={ETH} onChange={(e) => setETH(e.target.value)} backgroundColor='white'/>
             </Flex>
             <Spacer />
 
-            <Textarea placeholder="Contents" height="30vh" width='70%' value={contents} onChange={(e) => setContents(e.target.value)} />
+            <Textarea placeholder="Contents" height="30vh" width='70%' value={contents} onChange={(e) => setContents(e.target.value)} backgroundColor='white'/>
             <Spacer />
-            <Button onClick={SaveRequest} disabled={!contents}>Save</Button>
+            <Button onClick={SaveRequest} disabled={!contents} backgroundColor="green" color="white">Save</Button>
             <Spacer />
         </Flex>
     );

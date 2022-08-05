@@ -32,18 +32,18 @@ const Request = ({ accounts, setAccounts, member, signIn, profileImg, setImg, ni
     return (
         <Flex className="request" flexDirection="column" align="center">
             <Text marginTop="120px">Request List</Text>
-            <Button onClick={() => navigate("/pages/CreateRequest")} width="120px" position="absolute" right="300px" top="130px">make request</Button>
-            <Container fontSize="20px" fontFamily="sans-serif" marginTop="30px" backgroundColor="#E1F6FF" borderRadius="10px" height="65%">
-                <Flex>
-                    <Text width="600px">Title</Text>
-                    <Text width="160px">Subject</Text>
-                    <Text width="100px">ETH</Text>
-                    <Text width="130px">Requestor</Text>
+            <Button onClick={() => navigate("/pages/CreateRequest")} width="120px" position="absolute" right="20%" top="120px">make request</Button>
+            <Box fontSize="20px" fontFamily="sans-serif" marginTop="30px" backgroundColor="#E1F6FF" borderRadius="10px" width="65%" height="65%">
+                <Flex borderBottom="1px" marginTop="15px" marginBottom="15px" justify="center">
+                    <Text width="600px" fontWeight="bold">Title</Text>
+                    <Text width="200px" fontWeight="bold">Subject</Text>
+                    <Text width="100px" fontWeight="bold">ETH</Text>
+                    <Text width="150px" fontWeight="bold">Requestor</Text>
                 </Flex>
 
                 {requests && requests.map((cont, index) => <RequestList key={index} content={cont} accounts={accounts} profileImg={profileImg} />)}
 
-            </Container>
+            </Box>
         </Flex>
     );
 
@@ -53,22 +53,25 @@ function RequestList(props) {
 
     const { title, type, author, contents, eth } = props.content;
     const accounts = props.accounts;
-    let navigate = useNavigate();
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const AcceptRequest = () => {
+
+    };
 
     return (
         <>
 
-            <Flex>
+            <Flex justify="center">
                 <Text width="600px" onClick={onOpen}>{title}</Text>
-                <Text width="160px">{type}</Text>
+                <Text width="200px">{type}</Text>
                 <Text width="100px">{eth}</Text>
-                <Text width="130px">{author}</Text>
+                <Text width="150px">{author}</Text>
             </Flex>
 
             <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalContent width="400px" height="400px" backgroundColor="white" borderRadius="20px"
-                    position='fixed' top="30%" left="40%">
+            <ModalOverlay />
+                <ModalContent width="400px" height="400px" backgroundColor="white" borderRadius="20px" top="20%">
                     <Flex flexDirection="column" align="center">
                         <ModalHeader marginTop="40px">Request Details</ModalHeader>
                         <ModalBody marginTop="40px">
@@ -82,7 +85,7 @@ function RequestList(props) {
                             <Button  mr={10} onClick={onClose}>
                                 Close
                             </Button>
-                            <Button variant='ghost'>Accept</Button>
+                            <Button colorScheme='green' onClick={()=> AcceptRequest()}>Accept</Button>
                         </ModalFooter>
                     </Flex>
                 </ModalContent>
