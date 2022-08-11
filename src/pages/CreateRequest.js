@@ -58,7 +58,7 @@ const CreateRequest = ({ accounts, setAccounts, member, signIn, profileImg, setI
                 <option value='Computer Science'>Computer Science</option>
                 <option value='English'>English</option>
             </Select>
-            <Input placeholder="ETH amount" width='150px' fontSize="12px" value={ETH} onChange={(e) => setETH(e.target.value)} backgroundColor='white'/>
+            <Input placeholder="USDC amount" width='150px' fontSize="12px" value={ETH} onChange={(e) => setETH(e.target.value)} backgroundColor='white'/>
             </Flex>
             <Spacer />
 

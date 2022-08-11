@@ -1,12 +1,11 @@
 import {
-    Box, Button, Container, Flex, Text,
+    Box, Button, Flex, Text,
     Modal,
     ModalOverlay,
     ModalContent,
     ModalHeader,
     ModalFooter,
-    ModalBody,
-    ModalCloseButton, useDisclosure, Stack
+    ModalBody, useDisclosure,
 } from "@chakra-ui/react";
 import './Request.css'
 
@@ -15,6 +14,7 @@ import 'firebase/compat/firestore';
 import { FirebaseConfig } from '../firebase_config';
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 firebase.initializeApp(FirebaseConfig);
 
@@ -37,7 +37,7 @@ const Request = ({ accounts, setAccounts, member, signIn, profileImg, setImg, ni
                 <Flex borderBottom="1px" marginTop="15px" marginBottom="15px" justify="center">
                     <Text width="600px" fontWeight="bold">Title</Text>
                     <Text width="200px" fontWeight="bold">Subject</Text>
-                    <Text width="100px" fontWeight="bold">ETH</Text>
+                    <Text width="100px" fontWeight="bold">USDC</Text>
                     <Text width="150px" fontWeight="bold">Requestor</Text>
                 </Flex>
 
@@ -51,11 +51,23 @@ const Request = ({ accounts, setAccounts, member, signIn, profileImg, setImg, ni
 
 function RequestList(props) {
 
-    const { title, type, author, contents, eth } = props.content;
+    const { title, type, author, contents, eth, uid } = props.content;
     const accounts = props.accounts;
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const AcceptRequest = () => {
+    const AcceptRequest = async (e) => {
+        const requestRef = firestore.collection('accepted requests');
+        e.preventDefault();
+
+        await requestRef.add({
+            mentor: accounts[0],
+            mentee: uid,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            type: type,
+            eth: eth,
+        })
+
+        alert("successfully accepted!")
 
     };
 
@@ -76,7 +88,7 @@ function RequestList(props) {
                         <ModalHeader marginTop="40px">Request Details</ModalHeader>
                         <ModalBody marginTop="40px">
                                 <Text>Title: {title}</Text>
-                                <Text>ETH: {eth}</Text>
+                                <Text>USDC: {eth}</Text>
                                 <Text>Requestor: {author}</Text>
                                 <Box width="350px">{contents}</Box>
                         </ModalBody>
@@ -85,7 +97,7 @@ function RequestList(props) {
                             <Button  mr={10} onClick={onClose}>
                                 Close
                             </Button>
-                            <Button colorScheme='green' onClick={()=> AcceptRequest()}>Accept</Button>
+                            <Button colorScheme='green' onClick={AcceptRequest}>Accept</Button>
                         </ModalFooter>
                     </Flex>
                 </ModalContent>

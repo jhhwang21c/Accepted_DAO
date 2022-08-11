@@ -40,24 +40,25 @@ const Main = ({ accounts, setAccounts }) => {
         <div className="overlay">
             <Center>
                 <Flex justify="center" align="center" width="100%" flexDirection="column">
-                    <Box bg='rgba(0,0,0,0.2)' borderRadius="30px" w='70%' marginTop="170px" paddingBottom="30px" >
+                    <Flex bg='rgba(0,0,0,0.2)' borderRadius="30px" w='70%' marginTop="170px" paddingBottom="30px" height="300px" flexDirection="column" justify="center">
                         <Text fontSize="50px" fontFamily="Ubuntu" textShadow="0 3px #000000">Accepted DAO</Text>
                         <Text
                             fontSize="40px"
                             letterSpacing="-5.5%"
                             fontFamily="Ubuntu"
                             textShadow="0 2px 2px #000000"
+                            color='tomato'
                         >
-                            Welcome to Accepted DAO.</Text>
+                            'Teach 2 Earn & Learn'</Text>
                         <Text
                             fontSize="30px"
                             letterSpacing="-5.5%"
                             fontFamily="Ubuntu"
                             textShadow="0 2px 2px #000000"
                         >
-                            Accepted DAO is a decentralized college counseling organization.
+                            Accepted DAO is a decentralized college counseling and peer tutoring organization.
                         </Text>
-                    </Box>
+                    </Flex>
 
                     <Flex flexDirection="row" width="75%" >
                         <Box bg='rgba(0,0,0,0.2)' borderRadius="30px" w='47%' marginBottom="30px" marginTop="70px">

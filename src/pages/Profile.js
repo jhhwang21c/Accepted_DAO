@@ -1,4 +1,4 @@
-import { Button, Text, Input, Stack, Image, Flex } from '@chakra-ui/react';
+import { Button, Text, Input, Stack, Image, Flex, Center } from '@chakra-ui/react';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
@@ -37,22 +37,21 @@ const Profile = ({ accounts, setAccounts, member, signIn, profileImg, setImg }) 
 
     };
 
-
     return (
-        <div className='Profile'>
-            <Text color='tomato'>Profile page</Text>
-            <Image boxSize='200px' borderRadius="100px" src={profileImg} alt="nft" />
+        <Center>
+        <Flex justify='center' align='center' className='Profile' flexDirection='column'>
+            <Text color='tomato' marginTop='20px' fontSize="35px">Profile page</Text>
+            <Image boxSize='200px' marginTop='20px' borderRadius="100px" src={profileImg} alt="nft" />
 
-            <Stack spacing={10} marginTop='20px' marginBottom='20px'>
-                <Input variant='outline' placeholder="Nickname" size='md' value={name} onChange={(e) => setName(e.target.value)} />
-                <Input variant='outline' placeholder="Bio" size='md' value={bio} onChange={(e) => setBio(e.target.value)} />
-                <Input variant='outline' placeholder="Speciality" size='md' value={speciality} onChange={(e) => setSpeciality(e.target.value)} />
+            <Stack spacing={10} marginTop='30px' marginBottom='20px'>
+                <Input variant='outline' placeholder="Nickname" color='black' size='md' value={name} onChange={(e) => setName(e.target.value)} />
+                <Input variant='outline' placeholder="Bio" color='black' size='md' value={bio} onChange={(e) => setBio(e.target.value)} />
+                <Input variant='outline' placeholder="Speciality" color='black' size='md' value={speciality} onChange={(e) => setSpeciality(e.target.value)} />
             </Stack>
 
-            <Button onClick={SaveProfile} disabled={!name}>Save</Button>
-
-
-        </div>
+            <Button onClick={SaveProfile} disabled={!name} backgroundColor="green">Save</Button>
+        </Flex>
+        </Center>
     );
 };
 
