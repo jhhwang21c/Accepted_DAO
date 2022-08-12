@@ -51,6 +51,7 @@ function App() {
               accounts={accounts} setAccounts={setAccounts}
               member={member} signIn={signIn}
               profileImg={profileImg} setImg={setImg}
+              nickname={nickname} setNickname={setNickname}
             />}
         />
         <Route path='/pages/Chat'

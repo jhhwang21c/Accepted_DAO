@@ -3,18 +3,19 @@ import { Button, Text, Input, Stack, Image, Flex, Center } from '@chakra-ui/reac
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import { FirebaseConfig } from '../firebase_config';
-import { useCollectionData } from 'react-firebase-hooks/firestore'
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-import './Profile.css'
+import './Profile.css';
 import { useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 
 firebase.initializeApp(FirebaseConfig);
 
 const firestore = firebase.firestore();
 
-const Profile = ({ accounts, setAccounts, member, signIn, profileImg, setImg }) => {
+const Profile = ({ accounts, setAccounts, member, signIn, profileImg, setImg, setNickname }) => {
 
     const profileRef = firestore.collection('user');
     const query = profileRef.orderBy('createdAt').limit(25);
@@ -23,6 +24,7 @@ const Profile = ({ accounts, setAccounts, member, signIn, profileImg, setImg }) 
     const [name, setName] = useState('');
     const [bio, setBio] = useState('');
     const [speciality, setSpeciality] = useState('');
+    let navigate = useNavigate();
 
     const SaveProfile = async (e) => {
         e.preventDefault();
@@ -33,7 +35,9 @@ const Profile = ({ accounts, setAccounts, member, signIn, profileImg, setImg }) 
             speciality: speciality
         })
 
-        alert("successfully saved!")
+        alert("successfully saved!");
+        setNickname(name);
+        navigate("/");
 
     };
 
